@@ -170,28 +170,28 @@
 ; (ess-toggle-S-assign nil)
 ; (ess-toggle-underscore nil)
 
-;; Add key combos to ESS mode
-(require 'key-combo)
-(global-key-combo-mode)
-
-(defvar key-combo-ess-default
-  (append key-combo-common-default
-      '((">"  . (" > " " %>% "))
-        ("$"  . ("$" " %$% "))
-        ("<>" . " %<>% ")
-        ("*"  . ("*" " * "))
-        ("^"  . ("^" " ^ "))
-        ("/"  . ("/" " / "))
-        ("~" . " ~ ")
-        (":" . (":" "::" ":::"))
-        (":="  . " := ") ; data.table
-        ;; ("inn" . " %in% ") ; doesn't work
-        ("->"  . " -> ")
-	("-" . "-")))) ; fix - to have no spaces by default
-
-(key-combo-define-hook '(ess-mode-hook inferior-ess-mode-hook)
-               'ess-key-combo-load-default
-               key-combo-ess-default)
+;; ;; Add key combos to ESS mode
+;; (require 'key-combo)
+;; (global-key-combo-mode)
+;; 
+;; (defvar key-combo-ess-default
+;;   (append key-combo-common-default
+;;       '((">"  . (" > " " %>% "))
+;;         ("$"  . ("$" " %$% "))
+;;         ("<>" . " %<>% ")
+;;         ("*"  . ("*" " * "))
+;;         ("^"  . ("^" " ^ "))
+;;         ("/"  . ("/" " / "))
+;;         ("~" . " ~ ")
+;;         (":" . (":" "::" ":::"))
+;;         (":="  . " := ") ; data.table
+;;         ;; ("inn" . " %in% ") ; doesn't work
+;;         ("->"  . " -> ")
+;; 	("-" . "-")))) ; fix - to have no spaces by default
+;; 
+;; (key-combo-define-hook '(ess-mode-hook inferior-ess-mode-hook)
+;;                'ess-key-combo-load-default
+;;                key-combo-ess-default)
 
 ;; ESS font-lock defaults don't highlight enough. I like colors.
 ;; '(ess-R-font-lock-keywords
