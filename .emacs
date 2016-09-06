@@ -1,3 +1,4 @@
+
 ;;MELPA Setup
 (require 'package) ;; You might already have this line
 (add-to-list 'package-archives
@@ -127,9 +128,9 @@
  ;; Should indent each line to the level of the headline by default - not working yet.
 
 ;; Add calendar options
-(setq calendar-latitude 64.9)
-(setq calendar-longitude -147.8)
-(setq calendar-location-name "Fairbanks, AK")
+(setq calendar-latitude 47.6)
+(setq calendar-longitude -122.3)
+(setq calendar-location-name "Seattle, WA")
 (setq org-agenda-include-diary t)
 
 
@@ -329,3 +330,7 @@
    (python . t)
    ; (julia . t)
    ))
+
+;; Solarized Dark
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(load-theme 'solarized-dark t)
