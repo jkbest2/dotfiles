@@ -1,5 +1,5 @@
 " Pathogen Defaults (?)
-execute pathogen#infect()
+" execute pathogen#infect()
 filetype plugin indent on       " Allow for hard tabs in eg Makefiles
 
 " Tab options
@@ -10,8 +10,8 @@ set shiftwidth=4
 set smarttab
 
 " UI options
-set background=dark
-colorscheme solarized           " Color scheme
+" set background=dark
+" colorscheme solarized           " Color scheme
 set guifont=Fira\ Mono\ for\ Powerline\ 11 " Set font and size
 set number                      " Show line numbers
 " set cursorline                  " Highlight current line
@@ -41,8 +41,8 @@ let g:slime_target = "tmux"
 let g:Tex_DefaultTargetFormat='pdf'
 
 " powerline symbols
-let g:airline_powerline_fonts = 1
-set laststatus=2
+" let g:airline_powerline_fonts = 1
+" set laststatus=2
 
 " Saner delete defaults
 set backspace=indent,eol,start
