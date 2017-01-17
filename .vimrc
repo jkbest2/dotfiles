@@ -50,3 +50,8 @@ let g:Tex_DefaultTargetFormat='pdf'
 " Saner delete defaults
 set backspace=indent,eol,start
 
+" NO BELLS
+" set noerrorbells
+set visualbell
+set t_vb=
+
