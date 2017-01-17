@@ -50,4 +50,3 @@ let g:Tex_DefaultTargetFormat='pdf'
 " Saner delete defaults
 set backspace=indent,eol,start
 
-

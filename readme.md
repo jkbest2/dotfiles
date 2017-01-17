@@ -9,6 +9,19 @@ author: "John Best"
 
 Primary configuration is in `.vimrc`. It's nothing too special, but enables most of the standard options. The `.vim` directory contains the standard structure, along with Vim 8-style package directories, which contain git submodules for each plugin.
 
+Plugins that I use are:
+
+- [julia-vim](https://github.com/JuliaEditorSupport/julia-vim)
+- [SyntaxRange](https://github.com/vim-scripts/SyntaxRange)
+- [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
+- [vim-latex](https://github.com/vim-latex/vim-latex)
+- [vim-pandoc](https://github.com/vim-pandoc/vim-pandoc)
+- [vim-pandoc-syntax](https://github.com/vim-pandoc/vim-pandoc-syntax)
+- [vim-rmarkdown](https://github.com/vim-pandoc/vim-rmarkdown)
+- [vim-slime](https://github.com/jpalardy/vim-slime)
+- [vim-surround](https://github.com/tpope/vim-surround)
+- [vim-trailing-whitespace](https://github.com/bronson/vim-trailing-whitespace)
+
 ## Emacs
 
 My `.emacs` file is bloated and ugly, but it was working fairly well last time I used it. Some dependencies like `org-weather` will not be included here, so I should probably remove them from `.emacs`.
