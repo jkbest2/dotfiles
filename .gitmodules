@@ -1,33 +1,30 @@
-[submodule "julia-vim"]
-	path = julia-vim
-	url = https://github.com/JuliaEditorSupport/julia-vim
 [submodule ".vim/pack/plugins/start/julia-vim"]
-	path = .vim/pack/julia-vim
+	path = .vim/pack/plugins/start/julia-vim
 	url = https://github.com/JuliaEditorSupport/julia-vim
 [submodule ".vim/pack/plugins/start/vim-gitgutter"]
-	path = .vim/pack/vim-gitgutter
+	path = .vim/pack/plugins/start/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter
 [submodule ".vim/pack/plugins/start/SyntaxRange"]
-	path = .vim/pack/SyntaxRange
+	path = .vim/pack/plugins/start/SyntaxRange
 	url = https://github.com/vim-scripts/SyntaxRange
 [submodule ".vim/pack/plugins/start/vim-slime"]
-	path = .vim/pack/vim-slime
+	path = .vim/pack/plugins/start/vim-slime
 	url = https://github.com/jpalardy/vim-slime
 [submodule ".vim/pack/plugins/start/vim-latex"]
-	path = .vim/pack/vim-latex
+	path = .vim/pack/plugins/start/vim-latex
 	url = https://github.com/vim-latex/vim-latex
 [submodule ".vim/pack/plugins/start/vim-pandoc"]
-	path = .vim/pack/vim-pandoc
+	path = .vim/pack/plugins/start/vim-pandoc
 	url = https://github.com/vim-pandoc/vim-pandoc
 [submodule ".vim/pack/plugins/start/vim-rmarkdown"]
-	path = .vim/pack/vim-rmarkdown
+	path = .vim/pack/plugins/start/vim-rmarkdown
 	url = https://github.com/vim-pandoc/vim-rmarkdown
 [submodule ".vim/pack/plugins/start/vim-surround"]
-	path = .vim/pack/vim-surround
+	path = .vim/pack/plugins/start/vim-surround
 	url = https://github.com/tpope/vim-surround
 [submodule ".vim/pack/plugins/start/vim-pandoc-syntax"]
-	path = .vim/pack/vim-pandoc-syntax
+	path = .vim/pack/plugins/start/vim-pandoc-syntax
 	url = https://github.com/vim-pandoc/vim-pandoc-syntax
 [submodule ".vim/pack/plugins/start/vim-trailing-whitespace"]
-	path = .vim/pack/vim-trailing-whitespace
+	path = .vim/pack/plugins/start/vim-trailing-whitespace
 	url = https://github.com/bronson/vim-trailing-whitespace
