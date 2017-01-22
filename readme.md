@@ -56,3 +56,9 @@ Set right-Alt to Compose key, and Caps-lock to Escape (doesn't work on external 
 
 Set 256-color compatibility, lower escape time (suggestion from Neovim), and enable mouse mode.
 - 
+
+# Powerline
+
+## Terminal prompt
+
+Used gravyboat/powerline-config repo as start to configure. Also installed powerline-gitstatus to supplement information.
