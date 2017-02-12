@@ -15,10 +15,10 @@ set smarttab
 
 " UI options
 " set background=dark
-" colorscheme solarized           " Color scheme
+" colorscheme solarized         " Color scheme
 " set guifont=Fira\ Mono\ for\ Powerline\ 11 " Set font and size
 set number                      " Show line numbers
-" set cursorline                  " Highlight current line
+" set cursorline                " Highlight current line
 set colorcolumn=80              " Show 80-char line length
 set wildmenu                    " Visual autocomplete for command menu
 
