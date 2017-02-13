@@ -1,5 +1,5 @@
 " Enable Powerline
-set rtp+=/usr/lib/python3.6/site-packages/powerline/bindings/vim
+"set rtp+=/usr/lib/python3.6/site-packages/powerline/bindings/vim
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
 python3 del powerline_setup
@@ -14,8 +14,8 @@ set smarttab
 " filetype plugin indent on       " Allow for hard tabs in eg Makefiles
 
 " UI options
-" set background=dark
-" colorscheme solarized         " Color scheme
+set background=dark
+colorscheme nord                " Color scheme
 " set guifont=Fira\ Mono\ for\ Powerline\ 11 " Set font and size
 set number                      " Show line numbers
 " set cursorline                " Highlight current line
