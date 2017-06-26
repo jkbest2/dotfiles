@@ -28,3 +28,6 @@
 [submodule ".vim/pack/plugins/start/vim-trailing-whitespace"]
 	path = .vim/pack/plugins/start/vim-trailing-whitespace
 	url = https://github.com/bronson/vim-trailing-whitespace
+[submodule ".vim/pack/plugins/start/mc-stan.vim"]
+	path = .vim/pack/plugins/start/mc-stan.vim
+	url = https://github.com/mdlerch/mc-stan.vim.git

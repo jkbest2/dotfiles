@@ -11,7 +11,7 @@ set softtabstop=4               " Number of spaces in tab when editing
 set expandtab                   " Tabs are spaces
 set shiftwidth=4
 set smarttab
-" filetype plugin indent on       " Allow for hard tabs in eg Makefiles
+filetype plugin on       " Allow for hard tabs in eg Makefiles
 
 " UI options
 set background=dark
@@ -55,3 +55,6 @@ set backspace=indent,eol,start
 set visualbell
 set t_vb=
 
+" Julia and Julia Markdown
+autocmd FileType julia nnoremap <buffer> <localleader>c I# <esc>
+autocmd BufRead,BufNewFile *.jmd call SyntaxRange#Include('```{julia}', '```', 'julia', 'NonText')
