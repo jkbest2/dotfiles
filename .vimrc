@@ -58,3 +58,6 @@ set t_vb=
 " Julia and Julia Markdown
 autocmd FileType julia nnoremap <buffer> <localleader>c I# <esc>
 autocmd BufRead,BufNewFile *.jmd call SyntaxRange#Include('```{julia}', '```', 'julia', 'NonText')
+
+" Set mouse mode to all
+set mouse=a
