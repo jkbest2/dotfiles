@@ -31,3 +31,12 @@
 [submodule ".vim/pack/plugins/start/mc-stan.vim"]
 	path = .vim/pack/plugins/start/mc-stan.vim
 	url = https://github.com/mdlerch/mc-stan.vim.git
+[submodule ".vim/pack/plugins/start/nerdtree"]
+	path = .vim/pack/plugins/start/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule ".vim/pack/plugins/start/nerdtree-git-plugin"]
+	path = .vim/pack/plugins/start/nerdtree-git-plugin
+	url = https://github.com/Xuyuanp/nerdtree-git-plugin.git
+[submodule ".vim/pack/plugins/start/vim-fugitive"]
+	path = .vim/pack/plugins/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
