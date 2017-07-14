@@ -61,3 +61,6 @@ autocmd BufRead,BufNewFile *.jmd call SyntaxRange#Include('```{julia}', '```', '
 
 " Set mouse mode to all
 set mouse=a
+
+" Show hidden files in NERDTree
+let NERDTreeShowHidden=1
