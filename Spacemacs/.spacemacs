@@ -64,12 +64,12 @@ This function should only modify configuration layer settings."
      neotree
      (org :variables
           org-enable-org-journal-support t
-          org-journal-dir "~/journal"
+          org-journal-dir "~/Dropbox/journal"
           ;; NOTE Setting org-journal-enable-encryption to nil will allow
           ;; re-saving all entries unencrypted. This could be useful when
           ;; transitioning between GPG keys.
           org-journal-enable-encryption t
-          org-crypt-key "jkbest@gmail.com"
+          org-crypt-key "751707c9"
           org-crypt-disable-auto-save t
           org-journal-date-format "%Y-%m-%d %A (W%W)")
           ;; :hook (org-mode . (auto-fill-mode t)))
