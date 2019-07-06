@@ -1,0 +1,132 @@
+* Imported Feeds            :elfeed:
+** Outdoors :outdoors:
+*** [[http://slc-samurai.blogspot.com/feeds/posts/default][SLC Samurai]]
+*** [[http://www.colinhaley.com/feed/][Skagit Alpinism]]
+*** [[http://www.tetonat.com/feed/][TetonAT.com]]
+*** [[http://sweetgrass-productions.com/blog/?feed=rss2][The Powder Road]]
+*** [[http://www.coaststeepskier.com/wphome/?feed=rss2][Coast Steep Skier]]
+*** [[https://farnorthclimbing.wordpress.com/feed/][far north]]
+*** [[http://willgadd.com/?feed=rss2][Will Gadd]]
+*** [[http://colinhaley.blogspot.com/feeds/posts/default?alt=rss][Skagit Alpinism]]
+*** [[http://straightchuter.com/?feed=rss2][StraightChuter.com]]
+*** [[http://www.getstrongergolonger.com/journal/atom.xml][Journal]] :ignore:
+*** [[http://lacemine29.blogspot.com/feeds/posts/default][Big Wheel Building]]
+*** [[http://www.thepiton.com/rss.xml][The Piton]]                 :ignore:
+*** [[http://coldthistle.blogspot.com/feeds/posts/default][Cold Thistle]]
+*** [[http://packrafting.blogspot.com/feeds/posts/default][The Roaming Dials]]
+*** [[http://feeds2.feedburner.com/thecleanestline][The Cleanest Line]]
+*** [[http://noahhowell.com/feed/][NoahHowell.com]]
+*** [[http://feeds.feedburner.com/alpinist/Efcn][Alpinist Newswires]]
+*** [[http://nsaatrailgrooming.blogspot.com/feeds/posts/default][NSAA Trail Conditions and Grooming Update]] :ignore:
+*** [[http://pataclimb.com/feed.xml][PATAclimb.com]]               :ignore:
+*** [[http://bigfootmountainguides.com/feed/][Bigfoot Mountain Guides]] :ignore:
+*** [[http://www.skintrack.com/feed/][Skintrack.com]]
+*** [[http://feeds.feedburner.com/BlackDiamondJournal][Black Diamond Journal]]
+*** [[http://jeffreyhorner.blogspot.com/feeds/posts/default][Droppin' The Hammer And Grindin' The Gears]]
+*** [[http://semi-rad.com/feed/][semi-rad.com]]
+*** [[http://kellycordes.wordpress.com/feed/][Kelly Cordes]]
+*** [[http://www.wildsnow.com/feed/][- The Backcountry Skiing Blog]]
+*** [[http://feeds.feedburner.com/weekly_feature][Alpinist Weekly Features]]
+*** [[http://davesearle.me/feed/][Dave Searle]]
+*** [[http://blog.cilogear.biz/?feed=rss2][cilogear makes packs]]  :ignore:
+*** [[http://farnorthclimbing.blogspot.com/feeds/posts/default][far north]]
+*** [[http://www.perpetualweekend.com/feed/][Perpetual Weekend Jim Harris Adventure Photography]]
+*** [[http://gravsports.blogspot.com/feeds/posts/default?alt=rss][gravsports]]
+*** [[http://feeds.feedburner.com/adventure-journal][adventure journal]]
+*** [[http://feeds.feedburner.com/CosmicVariance][Cosmic Variance]]
+*** [[http://feeds.feedburner.com/wildthingsgear][Wild Things | WT Tactical | Wild Things Community]]
+*** [[http://akrunning.blogspot.com/feeds/posts/default][Fumbling Towards Endurance]]
+*** [[http://therepublicofdoom.blogspot.com/feeds/posts/default][protect yourself]]
+*** [[http://www.crosscountryalaska.org/feed/][Cross Country Alaska RSS Feed]] :ignore:
+*** [[http://www.greghill.ca/feed/][Greg Hill.ca]]
+*** [[http://aprilmayhew.wordpress.com/feed/][For Love Of Climbing » Feed]]
+** Academia :academia:
+*** [[http://feeds.feedburner.com/zenhabits][zen habits]]
+*** [[https://www.insidehighered.com/blogs/feed/GradHacker][Inside Higher Ed | Blog U]]
+*** [[http://thethesiswhisperer.wordpress.com/feed/][The Thesis Whisperer]]
+** Alaska :alaska:
+*** [[http://inksnow.blogspot.com/feeds/posts/default][Ink & Snow]]
+** Data Science :datascience:
+*** [[http://feeds.feedburner.com/RBloggers][R-bloggers]]
+*** [[http://junkcharts.typepad.com/junk_charts/index.rdf][Junk Charts]]
+*** [[http://www.johndcook.com/blog/feed/][John D. Cook]]
+*** [[http://notstatschat.tumblr.com/rss][Biased and Inefficient]]
+*** [[http://feeds.feedburner.com/FlowingData][FlowingData]]
+*** [[http://feeds.feedburner.com/InformationIsBeautiful][Information Is Beautiful]]
+*** [[http://understandinguncertainty.org/rss.xml][Understanding Uncertainty]]
+*** [[http://normaldeviate.wordpress.com/feed/][Normal Deviate]]
+*** [[http://bactra.org/weblog/index.rss][Three-Toed Sloth]]
+*** [[http://junkcharts.typepad.com/junk_charts/atom.xml][Junk Charts]]
+*** [[http://obsessionwithregression.blogspot.com/feeds/posts/default][Obsession with Regression]]
+*** [[http://blog.shakirm.com/feed/][The Spectator]]
+*** [[http://www.juliabloggers.com/feed/][juliabloggers.com]]
+*** [[http://hilaryparker.com/feed/][Not So Standard Deviations]]
+*** [[http://doingbayesiandataanalysis.blogspot.com/feeds/posts/default][Doing Bayesian Data Analysis]]
+*** [[http://feeds.feedburner.com/statsblogs][All About Statistics]]
+*** [[http://probabilistic-numerics.org/feed.xml][Probabilistic-Numerics.org]]
+*** [[http://bost.ocks.org/mike/index.rss][Mike Bostock]]
+*** [[http://blog.rstudio.org/feed/][RStudio Blog]]
+*** [[http://www.fivethirtyeight.com/feeds/posts/default][FiveThirtyEight]]
+*** [[http://simplystatistics.org/feed/][Simply Statistics]]
+*** [[http://accidental-art.tumblr.com/rss][accidental aRt]]
+*** [[http://liorpachter.wordpress.com/feed/][Bits of DNA]]
+*** [[http://feeds.feedburner.com/StatsChat][Stats Chat]]
+*** [[http://www.countbayesie.com/blog?format=RSS][Count Bayesie - A Probability Blog]]
+*** [[http://karpathy.github.io/feed.xml][Andrej Karpathy blog]]
+*** [[http://www.stat.columbia.edu/~cook/movabletype/mlm/atom.xml][Statistical Modeling, Causal Inference, and Social Science]]
+*** [[http://datamining.typepad.com/data_mining/atom.xml][Data Mining: Text Mining, Visual...]]
+*** [[http://blog.revolutionanalytics.com/atom.xml][Revolutions]]
+*** [[http://hunch.net/?feed=rss2][Machine Learning (Theory)]]
+*** [[http://www.hilarymason.com/feed/][hilarymason.com]]
+*** [[http://r-eco-evo.blogspot.com/feeds/posts/default][R in Ecology and Evolution]]
+*** [[http://www.exegetic.biz/blog/feed/][Exegetic Analytics]]     :ignore:
+** Parenting :parenting:
+*** [[http://scienceofmom.com/feed/][The Science of Mom]]
+*** [[http://www.redwineandapplesauce.com/feed/][Red Wine & Apple Sauce]]
+*** [[http://breastfeedingwithoutbs.blogspot.com/feeds/posts/default][Breastfeeding Without BS]]
+** Comics :comics:
+*** [[http://www.questionablecontent.net/QCRSS.xml][QC RSS]]
+*** [[http://xkcd.com/rss.xml][xkcd.com]]
+*** [[http://abstrusegoose.com/feed][Abstruse Goose]]
+*** [[http://birdandmoon.tumblr.com/rss][birdandmoon.com]]
+*** [[http://www.phdcomics.com/gradfeed.php][PHD Comics]]
+*** [[http://oatmeal.tumblr.com/rss][The Oatmeal]]
+*** [[http://www.smbc-comics.com/rss.php][Saturday Morning Breakfast Cereal]]
+** Friends + Family :friendsfamily:
+*** [[http://faridmosher.com/feed/][Farid Mosher » Feed]]          :ignore:
+*** [[http://teamwoe.blogspot.com/feeds/posts/default?alt=rss][Team Wear On Earth]]
+*** [[http://alpineexistence.com/feed/][Blog -Castleton Tower Rescue | Alpine Existence]] :ignore:
+*** [[http://www.shtumpa.com/wordpress/feed/][the Shtümpa Shop]]
+*** [[http://hazenw.tumblr.com/rss][dear bro diary]]
+*** [[http://www.sailblogs.com/member/gettingreadyfor2012/XJ11669_rss.xml][The Adventures of No Strings Attached: SailBlogs]] :ignore:
+*** [[http://nathaniel-stephens.blogspot.com/feeds/posts/default][Natcho Blog]]
+*** [[http://journals.worldnomads.com/dblatt/rss.aspx][travel]]
+*** [[http://cruisinglaleyenda.blogspot.com/feeds/posts/default][La Leyenda]]
+*** [[http://fittenup.blogspot.com/feeds/posts/default][FITTEN UP]]
+*** [[http://www.portchilkootdistillery.com/feed/][Blog | Port Chilkoot Distillery]] :ignore:
+*** [[http://letterstomystudents.tumblr.com/rss][Letters for my students]]
+*** [[http://lifeoflaurag.blogspot.com/feeds/posts/default][Life of Laura G]]
+*** [[http://laikaadventures.tumblr.com/rss][Laika in Space & Other Adventures]]
+*** [[https://questfornebulosity.wordpress.com/feed/][The Quest For Nebulosity]]
+*** [[https://purplecloudsatdawn.wordpress.com/feed/][purple clouds at dawn]]
+** News :news:
+*** [[http://wickershamsconscience.wordpress.com/feed/][Wickersham's Conscience]]
+*** [[http://longform.org/feed.rss][Longform]]
+*** [[http://www.themudflats.net/?feed=rss2][The Mudflats]]        :ignore:
+** Science :science:
+*** [[http://whatshouldwecallgradschool.tumblr.com/rss][#WHATSHOULDWECALLGRADSCHOOL]]
+*** [[http://feeds.feedburner.com/noamross][Noam Ross | Blog]]
+*** [[http://alantownsend.net/feed/][Alan Townsend's Blog]]
+*** [[http://cosmicvariance.com/feed/][Cosmic Variance]]           :ignore:
+*** [[http://mathwithbaddrawings.com/feed/][Math with Bad Drawings | Math, teaching, copious metaphors, and drawings that will never ever earn a spot on the fridge]]
+*** [[http://conservationecology.wordpress.com/feed/][Conservation Ecology]]
+*** [[http://what-if.xkcd.com/feed.atom][What If?]]
+*** [[http://www.randalolson.com/feed/][Dr. Randal S. Olson]]
+** Literature :literature:
+*** [[http://rss.sciencedirect.com/publication/science/01657836][ScienceDirect Publication: Fisheries Research]] :ignore:
+*** [[http://onlinelibrary.wiley.com/rss/journal/10.1002/(ISSN)1557-7015][Wiley: Ecological Monographs: Table of Contents]]
+*** [[https://www.jstatsoft.org/gateway/plugin/WebFeedGatewayPlugin/atom][Journal of Statistical Software]]
+*** [[http://onlinelibrary.wiley.com/rss/journal/10.1111/(ISSN)1467-9469][Wiley: Scandinavian Journal of Statistics: Table of Contents]]
+*** [[http://rss.sciencedirect.com/publication/science/22116753][ScienceDirect Publication: Spatial Statistics]] :ignore:
+*** [[http://projecteuclid.org/feeds/euclid.ba_article_rss.xml][Bayesian Analysis]]
+*** [[http://www.jenvstat.org/rss][Journal of Environmental Statistics]]
