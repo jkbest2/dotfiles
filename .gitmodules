@@ -1,42 +1,42 @@
 [submodule ".vim/pack/plugins/start/julia-vim"]
-	path = .vim/pack/plugins/start/julia-vim
+	path = vim/.vim/pack/plugins/start/julia-vim
 	url = https://github.com/JuliaEditorSupport/julia-vim
 [submodule ".vim/pack/plugins/start/vim-gitgutter"]
-	path = .vim/pack/plugins/start/vim-gitgutter
+	path = vim/.vim/pack/plugins/start/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter
 [submodule ".vim/pack/plugins/start/SyntaxRange"]
-	path = .vim/pack/plugins/start/SyntaxRange
+	path = vim/.vim/pack/plugins/start/SyntaxRange
 	url = https://github.com/vim-scripts/SyntaxRange
 [submodule ".vim/pack/plugins/start/vim-slime"]
-	path = .vim/pack/plugins/start/vim-slime
+	path = vim/.vim/pack/plugins/start/vim-slime
 	url = https://github.com/jpalardy/vim-slime
 [submodule ".vim/pack/plugins/start/vim-latex"]
-	path = .vim/pack/plugins/start/vim-latex
+	path = vim/.vim/pack/plugins/start/vim-latex
 	url = https://github.com/vim-latex/vim-latex
 [submodule ".vim/pack/plugins/start/vim-pandoc"]
-	path = .vim/pack/plugins/start/vim-pandoc
+	path = vim/.vim/pack/plugins/start/vim-pandoc
 	url = https://github.com/vim-pandoc/vim-pandoc
 [submodule ".vim/pack/plugins/start/vim-rmarkdown"]
-	path = .vim/pack/plugins/start/vim-rmarkdown
+	path = vim/.vim/pack/plugins/start/vim-rmarkdown
 	url = https://github.com/vim-pandoc/vim-rmarkdown
 [submodule ".vim/pack/plugins/start/vim-surround"]
-	path = .vim/pack/plugins/start/vim-surround
+	path = vim/.vim/pack/plugins/start/vim-surround
 	url = https://github.com/tpope/vim-surround
 [submodule ".vim/pack/plugins/start/vim-pandoc-syntax"]
-	path = .vim/pack/plugins/start/vim-pandoc-syntax
+	path = vim/.vim/pack/plugins/start/vim-pandoc-syntax
 	url = https://github.com/vim-pandoc/vim-pandoc-syntax
 [submodule ".vim/pack/plugins/start/vim-trailing-whitespace"]
-	path = .vim/pack/plugins/start/vim-trailing-whitespace
+	path = vim/.vim/pack/plugins/start/vim-trailing-whitespace
 	url = https://github.com/bronson/vim-trailing-whitespace
 [submodule ".vim/pack/plugins/start/mc-stan.vim"]
-	path = .vim/pack/plugins/start/mc-stan.vim
+	path = vim/.vim/pack/plugins/start/mc-stan.vim
 	url = https://github.com/mdlerch/mc-stan.vim.git
 [submodule ".vim/pack/plugins/start/nerdtree"]
-	path = .vim/pack/plugins/start/nerdtree
+	path = vim/.vim/pack/plugins/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
 [submodule ".vim/pack/plugins/start/nerdtree-git-plugin"]
-	path = .vim/pack/plugins/start/nerdtree-git-plugin
+	path = vim/.vim/pack/plugins/start/nerdtree-git-plugin
 	url = https://github.com/Xuyuanp/nerdtree-git-plugin.git
 [submodule ".vim/pack/plugins/start/vim-fugitive"]
-	path = .vim/pack/plugins/start/vim-fugitive
+	path = vim/.vim/pack/plugins/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
