@@ -1,4 +1,4 @@
-; -*- mode: emacs-lisp -*-
+;; -*- mode: emacs-lisp; lexical-binding: t -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -26,73 +26,67 @@ This function should only modify configuration layer settings."
    ;; a layer lazily. (default t)
    dotspacemacs-ask-for-lazy-installation t
 
-   ;; If non-nil layers with lazy install support are lazy installed.
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
    dotspacemacs-configuration-layer-path '()
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
-     ;; `M-m f e R' (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
+   '(
      auto-completion
      ;; better-defaults
      bibtex
+     common-lisp
      csv
-     deft
+     (deft :variables
+       deft-directory "~/Dropbox/org/notes"
+       deft-recursive t
+       deft-extension '("org" "md" "Rmd")
+       deft-new-file-format "%Y%m%d%H%M%S"
+       deft-use-filename-as-title nil)
      docker
-     (elfeed :variables
-             rmh-elfeed-org-files (list "~/.emacs.d/private/elfeed.org")
-             rmh-elfeed-org-auto-ignore-invalid-feeds t
-             rmh-elfeed-org-ignore-tag "ignore")
      emacs-lisp
+     erc
      ess
      (geolocation :variables
                   geolocation-enable-weather-forecast t)
      git
-     ;; github
+     github
      helm
+     html
      imenu-list
      jkb ;; My layer with a bunch of packages
      julia
      latex
      lsp
+     lua
      markdown
+     ;; (multiple-cursors :variables
+     ;;                   multiple-cursor-backend 'evil-mc)
      neotree
      (org :variables
           org-enable-org-journal-support t
+          org-journal-date-format "%Y-%m-%d %A (W%W)"
+          org-journal-time-prefix "** "
           org-journal-dir "~/Dropbox/journal"
-          ;; NOTE Setting org-journal-enable-encryption to nil will allow
-          ;; re-saving all entries unencrypted. This could be useful when
-          ;; transitioning between GPG keys.
           org-journal-enable-encryption t
           org-crypt-key "751707c9"
-          org-crypt-disable-auto-save t
-          org-journal-date-format "%Y-%m-%d %A (W%W)")
-          ;; :hook (org-mode . (auto-fill-mode t)))
-
-          ;; (org-mode . (lambda ()
-          ;;               ;; Enable fill column indicator
-          ;;               (fci-mode t)
-          ;;               ;; Turn off line numbering, it makes org so slow
-          ;;               (linum-mode -1)
-          ;;               ;; Set fill column to 79
-          ;;               (setq fill-column 79)
-          ;;               ;; Enable automatic line wrapping at fill column
-          ;;               (auto-fill-mode t))))
+          org-tags-exclude-from-inheritance (quote ("crypt"))
+          org-enable-hugo-support t
+          ;; Start agenda on current day
+          org-agenda-start-on-weekday nil)
+     rust
+     scheme
      (shell :variables
+            shell-default-shell 'vterm
             shell-default-height 30
             shell-default-position 'bottom)
-     ;; slack
      speed-reading
-     ;; spell-checking
-     ;; spotify
-     syntax-checking
+     spell-checking
+     (syntax-checking :variables
+                      syntax-checking-enable-tooltips nil)
      themes-megapack
-     ;; twitter
+     twitter
      version-control
      yaml
      )
@@ -104,7 +98,10 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(epresent
+                                      gnu-elpa-keyring-update
+                                      org-noter
+                                      org-plus-contrib)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -135,8 +132,8 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil)
    dotspacemacs-enable-emacs-pdumper nil
 
-   ;; File path pointing to emacs 27.1 executable compiled with support
-   ;; for the portable dumper (this is currently the branch pdumper).
+   ;; Name of executable file pointing to emacs 27+. This executable must be
+   ;; in your PATH.
    ;; (default "emacs")
    dotspacemacs-emacs-pdumper-executable-file "emacs"
 
@@ -172,8 +169,8 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-use-spacelpa nil
 
    ;; If non-nil then verify the signature for downloaded Spacelpa archives.
-   ;; (default nil)
-   dotspacemacs-verify-spacelpa-archives nil
+   ;; (default t)
+   dotspacemacs-verify-spacelpa-archives t
 
    ;; If non-nil then spacemacs will check for updates at startup
    ;; when the current branch is not `develop'. Note that checking for
@@ -194,8 +191,10 @@ It should only modify the values of Spacemacs settings."
    ;; (default 'vim)
    dotspacemacs-editing-style 'vim
 
-   ;; If non-nil output loading progress in `*Messages*' buffer. (default nil)
-   dotspacemacs-verbose-loading nil
+   ;; If non-nil show the version string in the Spacemacs buffer. It will
+   ;; appear as (spacemacs version)@(emacs version)
+   ;; (default t)
+   dotspacemacs-startup-buffer-show-version t
 
    ;; Specify the startup banner. Default value is `official', it displays
    ;; the official spacemacs logo. An integer value is the index of text
@@ -217,6 +216,11 @@ It should only modify the values of Spacemacs settings."
    ;; True if the home buffer should respond to resize events. (default t)
    dotspacemacs-startup-buffer-responsive t
 
+   ;; Default major mode for a new empty buffer. Possible values are mode
+   ;; names such as `text-mode'; and `nil' to use Fundamental mode.
+   ;; (default `text-mode')
+   dotspacemacs-new-empty-buffer-major-mode 'text-mode
+
    ;; Default major mode of the scratch buffer (default `text-mode')
    dotspacemacs-scratch-mode 'text-mode
 
@@ -227,18 +231,22 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(doom-opera
+   dotspacemacs-themes '(solarized-wombat-dark
+                         solarized-gruvbox-dark
+                         doom-gruvbox
+                         doom-nord
+                         doom-opera
                          subatomic
                          doom-one
                          spacemacs-dark
                          spacemacs-light)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
-   ;; `all-the-icons', `custom', `vim-powerline' and `vanilla'. The first three
-   ;; are spaceline themes. `vanilla' is default Emacs mode-line. `custom' is a
-   ;; user defined themes, refer to the DOCUMENTATION.org for more info on how
-   ;; to create your own spaceline theme. Value can be a symbol or list with\
-   ;; additional properties.
+   ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
+   ;; first three are spaceline themes. `doom' is the doom-emacs mode-line.
+   ;; `vanilla' is default Emacs mode-line. `custom' is a user defined themes,
+   ;; refer to the DOCUMENTATION.org for more info on how to create your own
+   ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
    dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
 
@@ -246,12 +254,11 @@ It should only modify the values of Spacemacs settings."
    ;; (default t)
    dotspacemacs-colorize-cursor-according-to-state t
 
-   ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
-   ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Noto Mono for Powerline"
-                               :size 11.0
-                               :weight regular
-                               :width wide)
+   ;; Default font or prioritized list of fonts.
+   dotspacemacs-default-font '("Monoid Nerd Font"
+                               :size 10.0
+                               :weight regular)
+                               ;; :width wide)
 
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
@@ -283,21 +290,6 @@ It should only modify the values of Spacemacs settings."
    ;; works in the GUI. (default nil)
    dotspacemacs-distinguish-gui-tab nil
 
-   ;; If non-nil `Y' is remapped to `y$' in Evil states. (default nil)
-   dotspacemacs-remap-Y-to-y$ nil
-
-   ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
-   ;; there. (default t)
-   dotspacemacs-retain-visual-state-on-shift t
-
-   ;; If non-nil, `J' and `K' move lines up and down when in visual mode.
-   ;; (default nil)
-   dotspacemacs-visual-line-move-text nil
-
-   ;; If non-nil, inverse the meaning of `g' in `:substitute' Evil ex-command.
-   ;; (default nil)
-   dotspacemacs-ex-substitute-global nil
-
    ;; Name of the default layout (default "Default")
    dotspacemacs-default-layout-name "Default"
 
@@ -327,27 +319,10 @@ It should only modify the values of Spacemacs settings."
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
 
-   ;; If non-nil, `helm' will try to minimize the space it uses. (default nil)
-   dotspacemacs-helm-resize nil
-
-   ;; if non-nil, the helm header is hidden when there is only one source.
-   ;; (default nil)
-   dotspacemacs-helm-no-header nil
-
-   ;; define the position to display `helm', options are `bottom', `top',
-   ;; `left', or `right'. (default 'bottom)
-   dotspacemacs-helm-position 'bottom
-
-   ;; Controls fuzzy matching in helm. If set to `always', force fuzzy matching
-   ;; in all non-asynchronous sources. If set to `source', preserve individual
-   ;; source settings. Else, disable fuzzy matching in all sources.
-   ;; (default 'always)
-   dotspacemacs-helm-use-fuzzy 'always
-
-   ;; If non-nil, the paste transient-state is enabled. While enabled, pressing
-   ;; `p' several times cycles through the elements in the `kill-ring'.
-   ;; (default nil)
-   dotspacemacs-enable-paste-transient-state nil
+   ;; If non-nil, the paste transient-state is enabled. While enabled, after you
+   ;; paste something, pressing `C-j' and `C-k' several times cycles through the
+   ;; elements in the `kill-ring'. (default nil)
+   dotspacemacs-enable-paste-transient-state t
 
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
@@ -384,6 +359,11 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil) (Emacs 24.4+ only)
    dotspacemacs-maximized-at-startup nil
 
+   ;; If non-nil the frame is undecorated when Emacs starts up. Combine this
+   ;; variable with `dotspacemacs-maximized-at-startup' in OSX to obtain
+   ;; borderless fullscreen. (default nil)
+   dotspacemacs-undecorated-at-startup nil
+
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
@@ -400,7 +380,9 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil show the color guide hint for transient state keys. (default t)
    dotspacemacs-show-transient-state-color-guide t
 
-   ;; If non-nil unicode symbols are displayed in the mode line. (default t)
+   ;; If non-nil unicode symbols are displayed in the mode line.
+   ;; If you use Emacs as a daemon and wants unicode characters only in GUI set
+   ;; the value to quoted `display-graphic-p'. (default t)
    dotspacemacs-mode-line-unicode-symbols t
 
    ;; If non-nil smooth scrolling (native-scrolling) is enabled. Smooth
@@ -409,10 +391,14 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-smooth-scrolling t
 
    ;; Control line numbers activation.
-   ;; If set to `t' or `relative' line numbers are turned on in all `prog-mode' and
-   ;; `text-mode' derivatives. If set to `relative', line numbers are relative.
+   ;; If set to `t', `relative' or `visual' then line numbers are enabled in all
+   ;; `prog-mode' and `text-mode' derivatives. If set to `relative', line
+   ;; numbers are relative. If set to `visual', line numbers are also relative,
+   ;; but lines are only visual lines are counted. For example, folded lines
+   ;; will not be counted and wrapped lines are counted as multiple lines.
    ;; This variable can also be set to a property list for finer control:
    ;; '(:relative nil
+   ;;   :visual nil
    ;;   :disabled-for-modes dired-mode
    ;;                       doc-view-mode
    ;;                       markdown-mode
@@ -420,8 +406,18 @@ It should only modify the values of Spacemacs settings."
    ;;                       pdf-view-mode
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
+   ;; When used in a plist, `visual' takes precedence over `relative'.
    ;; (default nil)
-   dotspacemacs-line-numbers t
+   dotspacemacs-line-numbers
+   '(:relative t
+     :visual nil
+     :disabled-for-modes dired-mode
+                         doc-view-mode
+                         markdown-mode
+                         org-mode
+                         pdf-view-mode
+                         text-mode
+     :size-limit-kb 1000)
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
@@ -432,7 +428,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-smartparens-strict-mode nil
 
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
-   ;; over any automatically added closing parenthesis, bracket, quote, etc…
+   ;; over any automatically added closing parenthesis, bracket, quote, etc...
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
    dotspacemacs-smart-closing-parenthesis nil
 
@@ -443,11 +439,18 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil, start an Emacs server if one is not already running.
    ;; (default nil)
-   dotspacemacs-enable-server nil
+   dotspacemacs-enable-server t
+
+   ;; Set the emacs server socket location.
+   ;; If nil, uses whatever the Emacs default is, otherwise a directory path
+   ;; like \"~/.emacs.d/server\". It has no effect if
+   ;; `dotspacemacs-enable-server' is nil.
+   ;; (default nil)
+   dotspacemacs-server-socket-dir nil
 
    ;; If non-nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
-   dotspacemacs-persistent-server nil
+   dotspacemacs-persistent-server t
 
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `rg', `ag', `pt', `ack' and `grep'.
@@ -493,6 +496,14 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil)
    dotspacemacs-pretty-docs nil))
 
+(defun dotspacemacs/user-env ()
+  "Environment variables setup.
+This function defines the environment variables for your Emacs session. By
+default it calls `spacemacs/load-spacemacs-env' which loads the environment
+variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
+See the header of this file for more information."
+  (spacemacs/load-spacemacs-env))
+
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
 This function is called immediately after `dotspacemacs/init', before layer
@@ -503,9 +514,9 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
-This function is called while dumping Spacemacs configuration. You can
-`require' or `load' the libraries of your choice that will be included
-in the dump."
+This function is called only while dumping Spacemacs configuration. You can
+`require' or `load' the libraries of your choice that will be included in the
+dump."
   )
 
 (defun dotspacemacs/user-config ()
@@ -514,43 +525,193 @@ very end of Spacemacs startup, after layer configuration. Put
 your configuration code here, except for variables that should be
 set before packages are loaded."
 
+  ;; Default to holy-mode in vterm; too many modal modes simultaneously moding
+  (with-eval-after-load 'evil
+    (evil-set-initial-state 'vterm-mode 'emacs))
+
+  ;; Make sure that fill-column is sane
+  (set-fill-column 80)
+
   ;; Don't turn on visual-line-mode for org-mode files; I'd prefer to use
   ;; auto-fill-mode for these
   (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
 
-  (setq deft-directory "~/Dropbox/notes")
+  ;; Turn on time in modeline, remove minor-modes in modeline
+  (setq display-time-mode t)
+  (setq display-time-day-and-date t)
+  (setq display-time-string-forms
+        '(dayname " " monthname " " day
+                  " " 24-hours ":" minutes))
+  ;; Remove minor modes in modeline to free up space for time
+  (spacemacs/toggle-mode-line-minor-modes-off)
 
+  ;; org-mode settings
   (with-eval-after-load 'org
+    ;; Make the buffers look prettier
     (setq org-startup-indented t)
-    (setq org-agenda-files
-          '("~/Dropbox/notes"))
+    ;; Put these where deft can search them
+    (setq org-agenda-files '("~/Dropbox/org"))
+    (setq org-directory "~/Dropbox/org")
+    ;; Fix refiling to use headers
     (setq org-refile-targets
           '((nil :maxlevel . 3)
             (org-agenda-files :maxlevel . 3)))
-    (add-hook 'org-mode-hook 'turn-on-auto-fill))
+    ;; auto-fill-mode in org files. Don't expect to version control them and
+    ;; looks nicer
+    (add-hook 'org-mode-hook 'turn-on-auto-fill)
+    ;; Set up non-journal encryption (key set above)
+    (require 'org-crypt)
+    (setq org-crypt-disable-auto-save t)
+    (org-crypt-use-before-save-magic)
+    (setq org-todo-keywords
+          '((sequence "TODO(t)" "NEXT(n)" "WAIT(w@!/!)" "|" "DONE(d!)" "CNCL(c@)")
+            (sequence "SCHED(s)" "TENT(T)" "|" "CNCL(c@)")))
+    (setq org-tag-alist '(("dissertation" . ?0)
+                          ("ch1" . ?1)
+                          ("ch2" . ?2)
+                          ("ch3" . ?3)
+                          ("ch4" . ?4)
+                          (:newline . nil)
+                          ;; Reading groups and seminars
+                          ("quantsem" . ?q)
+                          ("safssem" . ?f)
+                          ("spacetime" . ?s)
+                          ("puntlab" . ?p)
+                          (:newline . nil)
+                          ;; Conferences
+                          ("capam_m" . ?m)
+                          ("wfc2020" . ?w)
+                          (:newline . nil)
+                          ;; Service
+                          ("review" . ?r)
+                          ;; StatR
+                          ("statr" . ?R)
+                          (:newline . nil)
+                          ;; Be a good
+                          ("kit" . ?k)
+                          ("ada" . ?a)
+                          ("john" . ?j)
+                          ("dawson" . ?d)
+                          (:newline . nil)))
+    (setq org-agenda-use-time-grid nil)
+    (setq org-default-notes-file (concat org-directory "/inbox.org"))
+    (setq org-capture-templates
+          '(("t" "To Do" entry
+             (file+headline "Current.org" "Tasks")
+             "** TODO %? \n %^{|DEADLINE|SCHEDULED}: %^t \n")
+            ("b" "Backlog" entry
+             (file+headline "Backlog.org" "Backlog")
+             "** TODO %? \n")
+            ("e" "Event" entry
+             (file+headline "Current.org" "Events")
+             "** %? \n %^T \n")
+            ("n" "Note" entry
+             (file+headline "inbox.org" "Notes")
+             "** %? \n")))
+    ;; org-babel setup
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((R . t)
+       (julia . t)
+       (emacs-lisp . t)
+       (ditaa . t)
+       (plantuml . t)
+       (dot . t)))
+    (setq org-ditaa-jar-path "/usr/bin/ditaa")
+    (setq org-plantuml-jar-path "/usr/share/plantuml/plantuml.jar")
+    ;; When logging TODO state changes, keep times in drawer :LOGBOOK:, the
+    ;; default
+    (setq org-log-into-drawer t)
+    (add-to-list 'org-modules 'org-habit t)
+    (spacemacs/set-leader-keys-for-major-mode 'org-agenda-mode
+      "h" 'org-habit-toggle-display-in-agenda)
+    (setq org-archive-default-command 'org-archive-to-archive-sibling)
+    (setq org-agenda-skip-additional-timestamps-same-entry t)
+    (setq org-agenda-skip-archived-trees nil)
+    (setq org-agenda-skip-deadline-if-done t)
+    (setq org-reverse-note-order t)
+    ;; I prefer to archive to sibling, which doesn't have a default key binding
+    ;; in Spacemacs. Add ",sx" here.
+    (spacemacs/set-leader-keys-for-major-mode
+      'org-mode "sx" 'org-archive-to-archive-sibling))
+;; (setq org-caldav-url 'google)
+;; (setq org-caldav-calendar-id FILL IN HERE)
+;; (setq org-caldav-inbox "~/Dropbox/notes/caldav-inbox.org")
+;; (setq org-caldav-files "~/Dropbox/notes")
+;; (setq org-icalendar-timezone "America/Los_Angeles"))
 
-  ;; R/ESS options
-  (setq inferior-R-args "--no-save --no-restore-data")
-  (setq ess-R-argument-suffix " = ")
-  (ess-toggle-underscore nil)
-  (setq ess-default-style 'RStudio)
+;; Activate pdf-tools
+(pdf-tools-install)
 
-  ;; Julia options
-  ;; TODO Need to check whether these need updated
-  (setq julia-repl-executable-records
-        '((default "julia")
-          (julia-0.6 "julia-0.6")
-          (julia-0.7 "julia-0.7")
-          (julia-1.0 "julia-1.0")))
+;; Bibtex setup
+(setq bibtex-completion-bibliography "~/Dropbox/literature/library.bib")
+(setq bibtex-completion-library-path "~/Dropbox/literature")
+(setq bibtex-completion-notes-path "~/Dropbox/org/notes/literature")
 
-  ;; Default Spacemacs large file size too small (1Mb)
-  (setq dotspacemacs-large-file-size 100)
-  (add-hook 'elfeed-show-mode-hook 'turn-on-olivetti-mode)
+;; Setup org-ref
+(setq reftex-default-bibliography '("~/Dropbox/literature/library.bib"))
+(setq org-ref-default-bibliography '("~/Dropbox/literature/library.bib")
+      org-ref-pdf-directory "~/Dropbox/literature/")
 
-  (setq sunshine-appid "c3743c29dab06f2e7f5c6590398dad3c")
-  (setq sunshine-location "Seattle,WA,US")
-  (setq sunshine-show-icons t)
-  )
+;; Tell org-ref to let helm-bibtex find notes for it
+(setq org-ref-notes-function
+      (lambda (thekey)
+        (let ((bibtex-completion-bibliography (org-ref-find-bibliography)))
+          (bibtex-completion-edit-notes
+           (list (car (org-ref-get-bibtex-key-and-file thekey)))))))
+
+;; Make IRC quiet again
+(setq erc-hide-list '("JOIN" "PART" "QUIT"))
+
+;; R/ESS options
+(setq inferior-R-args "--no-save --no-restore-data")
+(setq ess-R-argument-suffix " = ")
+(ess-toggle-underscore nil)
+(setq ess-default-style 'RStudio)
+(add-hook 'ess-julia-mode-hook 'julia-mode)
+
+;; Julia options
+(setq julia-repl-executable-records
+      '((default "julia")
+        (julia-0.7 "julia-0.7")
+        (julia-1.2 "julia-1.2")
+        (julia-1.3 "julia-1.3")))
+;; Set number of threads as environmental variable for Julia v1.3+
+(setenv "JULIA_NUM_THREADS" "4")
+;; Without this tries to open vim inside the julia-repl terminal process,
+;; which gets messy quickly.
+(setenv "JULIA_EDITOR" "emacsclient")
+;; Can be used to set e.g. number of processes with " -p 4". Can also be
+;; called as a function to set switches on the fly.
+(setq julia-repl-switches "")
+
+;; Default Spacemacs large file size too small (1Mb)
+(setq dotspacemacs-large-file-size 100)
+
+;; Weather setup
+(setq sunshine-appid "c3743c29dab06f2e7f5c6590398dad3c")
+(setq sunshine-location "Seattle,WA,US")
+(setq sunshine-show-icons t)
+
+;; Use minibuffer for GPG password propmts
+;; (setq epa-pinentry-mode 'loopback)
+;; (pinentry-start)
+
+(with-eval-after-load 'flycheck
+  (flycheck-define-checker todo-checker
+    "A checker to list open TODOs, CITEs, or other annotations in
+  a file."
+    :command ("todo-checker" source)
+    :error-patterns
+    ((warning line-start (file-name) ":" line ":" column ":" (message) line-end))
+    :modes markdown-mode))
+
+;; Add monitors to symon
+(setq symon-monitors '(symon-linux-cpu-monitor
+                       symon-linux-memory-monitor
+                       symon-linux-network-rx-monitor
+                       symon-linux-network-tx-monitor
+                       symon-linux-battery-monitor)))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -569,6 +730,7 @@ This function is called at the very end of Spacemacs initialization."
    (quote
     (("TODO" . "#dc752f")
      ("NEXT" . "#dc752f")
+     ("CITE" . "#dc752f")
      ("THEM" . "#2d9574")
      ("PROG" . "#3a81c3")
      ("OKAY" . "#3a81c3")
@@ -582,17 +744,22 @@ This function is called at the very end of Spacemacs initialization."
      ("FIXME" . "#dc752f")
      ("XXX" . "#dc752f")
      ("XXXX" . "#dc752f"))))
- '(org-agenda-files
-   (quote
-    ("/home/jkbest/Dropbox/notes/100papers.org" "/home/jkbest/Dropbox/notes/ADMBNotes.org" "/home/jkbest/Dropbox/notes/AdaNotes.org" "/home/jkbest/Dropbox/notes/AdvancedSpatialModelingSPDEs.org" "/home/jkbest/Dropbox/notes/Chapter1.org" "/home/jkbest/Dropbox/notes/Chapter2.org" "/home/jkbest/Dropbox/notes/Chapter3.org" "/home/jkbest/Dropbox/notes/Chapter4.org" "/home/jkbest/Dropbox/notes/Dissertation.org" "/home/jkbest/Dropbox/notes/Fish559_GAMs.org" "/home/jkbest/Dropbox/notes/Fish559_HW4Hints.org" "/home/jkbest/Dropbox/notes/Fish559_Interpolation.org" "/home/jkbest/Dropbox/notes/Glacier2019.org" "/home/jkbest/Dropbox/notes/GrammarNotes.org" "/home/jkbest/Dropbox/notes/INLAnotes.org" "/home/jkbest/Dropbox/notes/JSM2018.org" "/home/jkbest/Dropbox/notes/JuliaNotes.org" "/home/jkbest/Dropbox/notes/People.org" "/home/jkbest/Dropbox/notes/Personal.org" "/home/jkbest/Dropbox/notes/QuantSem2018-10-19.org" "/home/jkbest/Dropbox/notes/QuantSem2018-11-09.org" "/home/jkbest/Dropbox/notes/QuantSem_2018-09-29.org" "/home/jkbest/Dropbox/notes/QuantSem_2018-10-12.org" "/home/jkbest/Dropbox/notes/QuantSem_2018-11-16.org" "/home/jkbest/Dropbox/notes/QuantSem_2019-06-07_Monnahan.org" "/home/jkbest/Dropbox/notes/ResearchIdeas.org" "/home/jkbest/Dropbox/notes/Rnotes.org" "/home/jkbest/Dropbox/notes/Seminars.org" "/home/jkbest/Dropbox/notes/TMBnotes.org" "/home/jkbest/Dropbox/notes/ThinkTank_2018-10-16_Siple.org" "/home/jkbest/Dropbox/notes/ThinkTank_2019-01-29_Adams.org" "/home/jkbest/Dropbox/notes/WindowsNotes.org" "/home/jkbest/Dropbox/notes/nixNotes.org")))
+ '(jdee-db-active-breakpoint-face-colors (cons "#1B2229" "#fabd2f"))
+ '(jdee-db-requested-breakpoint-face-colors (cons "#1B2229" "#8ec07c"))
+ '(jdee-db-spec-breakpoint-face-colors (cons "#1B2229" "#555556"))
+ '(objed-cursor-color "#fb4934")
+ '(org-roam-directory "~/Dropbox/org/notes")
  '(package-selected-packages
    (quote
-    (org-journal yaml-mode lsp-ui lsp-treemacs treemacs pfuture lv helm-lsp company-lsp dash-functional dockerfile-mode docker json-mode docker-tramp json-snatcher json-reformat web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode prettier-js impatient-mode helm-css-scss haml-mode emmet-mode counsel-css company-web web-completion-data add-node-modules-path zenburn-theme yasnippet-snippets xterm-color winum toc-org tao-theme speed-type solarized-theme slack circe seti-theme racket-mode racer poly-R poly-noweb paradox orgit org-ref pdf-tools tablist org-projectile org-mime org-download org-brain neotree naquadah-theme minimal-theme magit-svn lsp-julia link-hint kaolin-themes julia-repl inkpot-theme hl-todo highlight-indentation helm-xref helm-spotify-plus helm-make helm-bibtex parsebib gruvbox-theme google-translate git-timemachine git-link flyspell-correct-helm flyspell-correct eyebrowse expand-region evil-visual-mark-mode evil-surround evil-nerd-commenter evil-matchit evil-magit evil-goggles eval-sexp-fu eshell-prompt-extras emojify ht elfeed-goodies editorconfig dumb-jump dracula-theme doom-themes doom-modeline eldoc-eval diff-hl deft define-word darktooth-theme cyberpunk-theme counsel-projectile counsel swiper ivy color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized centered-cursor-mode cargo rust-mode browse-at-remote biblio biblio-core auto-yasnippet auto-compile apropospriate-theme alect-themes aggressive-indent ace-window ace-link avy auctex elfeed simple-httpd ess julia-mode anzu iedit smartparens flycheck company request projectile window-purpose imenu-list helm helm-core magit-popup magit transient git-commit with-editor alert f markdown-mode polymode spaceline dash powerline all-the-icons which-key use-package hydra async evil goto-chg org-plus-contrib zen-and-art-theme ws-butler white-sand-theme websocket volatile-highlights vi-tilde-fringe uuidgen undo-tree underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme treepy toxi-theme toml-mode tangotango-theme tango-plus-theme tango-2-theme symon sunshine sunny-day-theme sublime-themes subatomic256-theme subatomic-theme string-inflection stan-snippets spray spotify spinner spaceline-all-the-icons spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle shrink-path shell-pop reverse-theme restart-emacs rebecca-theme rainbow-delimiters railscasts-theme purple-haze-theme professional-theme popwin poly-markdown planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pcre2el password-generator packed overseer organic-green-theme org-present org-pomodoro org-category-capture org-bullets open-junk-file omtose-phellack-theme olivetti oldlace-theme occidental-theme obsidian-theme oauth2 noflet noctilux-theme nameless mustang-theme multi-term multi move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode material-theme markdown-toc majapahit-theme magit-gitflow madhat2r-theme macrostep lush-theme lsp-mode lorem-ipsum log4e light-soap-theme key-chord jbeans-theme jazz-theme ir-black-theme indent-guide hungry-delete htmlize highlight-parentheses highlight-numbers highlight heroku-theme hemisu-theme helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-gitignore helm-git-grep helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag hc-zenburn-theme gruber-darker-theme graphql grandshell-theme gotham-theme golden-ratio gnuplot gntp gitignore-templates gitconfig-mode gitattributes-mode git-messenger git-gutter-fringe git-gutter-fringe+ gh-md gandalf-theme fuzzy font-lock+ flycheck-rust flycheck-pos-tip flx-ido flatui-theme flatland-theme fill-column-indicator farmhouse-theme fancy-battery faceup eziam-theme exotica-theme evil-visualstar evil-unimpaired evil-tutor evil-org evil-numbers evil-mc evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu ess-R-data-view espresso-theme eshell-z esh-help emoji-cheat-sheet-plus elisp-slime-nav elfeed-web elfeed-org dotenv-mode django-theme diminish darkokai-theme darkmine-theme darkburn-theme dakrone-theme csv-mode company-statistics company-emoji company-auctex column-enforce-mode clues-theme clean-aindent-mode cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme bind-key badwolf-theme autothemer auto-highlight-symbol auto-dictionary anti-zenburn-theme ample-zen-theme ample-theme afternoon-theme ace-jump-mode ace-jump-helm-line ac-ispell)))
- '(pdf-view-midnight-colors (quote ("#655370" . "#fbf8ef"))))
+    (slime-company slime geiser common-lisp-snippets epresent org-roam pinentry yapfify utop tuareg caml seeing-is-believing rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocopfmt rubocop rspec-mode robe rbenv rake pytest pyenv-mode py-isort pippel pipenv pyvenv pip-requirements ocp-indent ob-elixir nodejs-repl mvn minitest meghanada maven-test-mode lsp-python-ms lsp-java livid-mode skewer-mode live-py-mode json-navigator hierarchy js2-refactor multiple-cursors js2-mode js-doc importmagic epc concurrent deferred helm-pydoc groovy-mode groovy-imports gradle-mode flycheck-ocaml merlin flycheck-mix flycheck-credo dune cython-mode company-tern tern company-anaconda chruby bundler inf-ruby blacken auto-complete-rst anaconda-mode pythonic alchemist elixir-mode org-noter ox-hugo ox-gfm twittering-mode github-search github-clone gist gh marshal logito pcache forge ghub closql emacsql-sqlite emacsql erc-yt erc-view-log erc-social-graph erc-image erc-hl-nicks company-lua lua-mode gnu-elpa-keyring-update let-alist helm-gtags ggtags counsel-gtags org-caldav org-journal yaml-mode lsp-ui lsp-treemacs treemacs pfuture lv helm-lsp company-lsp dash-functional dockerfile-mode docker json-mode docker-tramp json-snatcher json-reformat web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode prettier-js impatient-mode helm-css-scss haml-mode emmet-mode counsel-css company-web web-completion-data add-node-modules-path zenburn-theme yasnippet-snippets xterm-color winum toc-org tao-theme speed-type solarized-theme slack circe seti-theme racket-mode racer poly-R poly-noweb paradox orgit org-ref pdf-tools tablist org-projectile org-mime org-download org-brain neotree naquadah-theme minimal-theme magit-svn lsp-julia link-hint kaolin-themes julia-repl inkpot-theme hl-todo highlight-indentation helm-xref helm-spotify-plus helm-make helm-bibtex parsebib gruvbox-theme google-translate git-timemachine git-link flyspell-correct-helm flyspell-correct eyebrowse expand-region evil-visual-mark-mode evil-surround evil-nerd-commenter evil-matchit evil-magit evil-goggles eval-sexp-fu eshell-prompt-extras emojify ht elfeed-goodies editorconfig dumb-jump dracula-theme doom-themes doom-modeline eldoc-eval diff-hl deft define-word darktooth-theme cyberpunk-theme counsel-projectile counsel swiper ivy color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized centered-cursor-mode cargo rust-mode browse-at-remote biblio biblio-core auto-yasnippet auto-compile apropospriate-theme alect-themes aggressive-indent ace-window ace-link avy auctex elfeed simple-httpd ess julia-mode anzu iedit smartparens flycheck company request projectile window-purpose imenu-list helm helm-core magit-popup magit transient git-commit with-editor alert f markdown-mode polymode spaceline dash powerline all-the-icons which-key use-package hydra async evil goto-chg org-plus-contrib zen-and-art-theme ws-butler white-sand-theme websocket volatile-highlights vi-tilde-fringe uuidgen undo-tree underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme treepy toxi-theme toml-mode tangotango-theme tango-plus-theme tango-2-theme symon sunshine sunny-day-theme sublime-themes subatomic256-theme subatomic-theme string-inflection stan-snippets spray spotify spinner spaceline-all-the-icons spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle shrink-path shell-pop reverse-theme restart-emacs rebecca-theme rainbow-delimiters railscasts-theme purple-haze-theme professional-theme popwin poly-markdown planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pcre2el password-generator packed overseer organic-green-theme org-present org-pomodoro org-category-capture org-bullets open-junk-file omtose-phellack-theme olivetti oldlace-theme occidental-theme obsidian-theme oauth2 noflet noctilux-theme nameless mustang-theme multi-term multi move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode material-theme markdown-toc majapahit-theme magit-gitflow madhat2r-theme macrostep lush-theme lsp-mode lorem-ipsum log4e light-soap-theme key-chord jbeans-theme jazz-theme ir-black-theme indent-guide hungry-delete htmlize highlight-parentheses highlight-numbers highlight heroku-theme hemisu-theme helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-gitignore helm-git-grep helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag hc-zenburn-theme gruber-darker-theme graphql grandshell-theme gotham-theme golden-ratio gnuplot gntp gitignore-templates gitconfig-mode gitattributes-mode git-messenger git-gutter-fringe git-gutter-fringe+ gh-md gandalf-theme fuzzy font-lock+ flycheck-rust flycheck-pos-tip flx-ido flatui-theme flatland-theme fill-column-indicator farmhouse-theme fancy-battery faceup eziam-theme exotica-theme evil-visualstar evil-unimpaired evil-tutor evil-org evil-numbers evil-mc evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu ess-R-data-view espresso-theme eshell-z esh-help emoji-cheat-sheet-plus elisp-slime-nav elfeed-web elfeed-org dotenv-mode django-theme diminish darkokai-theme darkmine-theme darkburn-theme dakrone-theme csv-mode company-statistics company-emoji company-auctex column-enforce-mode clues-theme clean-aindent-mode cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme bind-key badwolf-theme autothemer auto-highlight-symbol auto-dictionary anti-zenburn-theme ample-zen-theme ample-theme afternoon-theme ace-jump-mode ace-jump-helm-line ac-ispell)))
+ '(paradox-github-token t)
+ '(pdf-view-midnight-colors (quote ("#655370" . "#fbf8ef")))
+ '(rustic-ansi-faces
+   ["#282828" "#fb4934" "#8ec07c" "#fabd2f" "#268bd2" "#fb2874" "#83a598" "#ebdbb2"]))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((((class color) (min-colors 89)) (:foreground "#d2cfc6" :background "#292928")))))
 )
