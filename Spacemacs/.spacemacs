@@ -94,6 +94,12 @@ This function should only modify configuration layer settings."
             shell-default-shell 'vterm
             shell-default-height 30
             shell-default-position 'bottom)
+     (spacemacs-layouts :variables
+                        spacemacs-layouts-restricted-functions
+                        '(spacemacs/window-split-double-columns
+                          spacemacs/window-split-triple-columns
+                          spacemacs/window-split-grid
+                          spacemacs/toggle-golden-ratio))
      speed-reading
      spell-checking
      (syntax-checking :variables
@@ -120,7 +126,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(fill-column-indicator)
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -547,6 +553,11 @@ set before packages are loaded."
     (shell-command "syncmail"))
   (spacemacs/set-leader-keys "aNr" 'notmuch-sync-mail)
 
+  ;; Set default writeroom width to 90 (from 80) so that contents in org-buffers
+  ;; that are visually indented don't get wrapped. 90 allows for a 5th level
+  ;; heading to avoid wrapping. Should be plenty
+  (setq writeroom-width 90)
+
   ;; Use sendmail (msmtp here) to send mail
   (setq message-send-mail-function 'message-send-mail-with-sendmail)
   (setq message-kill-buffer-on-exit t)
@@ -558,6 +569,7 @@ set before packages are loaded."
   (setq message-signature-file "~/.signature")
 
   ;; Default to holy-mode in vterm; too many modal modes simultaneously moding
+  ;; with zsh in vim-mode
   (with-eval-after-load 'evil
     (evil-set-initial-state 'vterm-mode 'emacs))
 
@@ -666,82 +678,97 @@ set before packages are loaded."
     ;; in Spacemacs. Add ",sx" here.
     (spacemacs/set-leader-keys-for-major-mode
       'org-mode "sx" 'org-archive-to-archive-sibling))
-;; (setq org-caldav-url 'google)
-;; (setq org-caldav-calendar-id FILL IN HERE)
-;; (setq org-caldav-inbox "~/Dropbox/notes/caldav-inbox.org")
-;; (setq org-caldav-files "~/Dropbox/notes")
-;; (setq org-icalendar-timezone "America/Los_Angeles"))
+  ;; (setq org-caldav-url 'google)
+  ;; (setq org-caldav-calendar-id FILL IN HERE)
+  ;; (setq org-caldav-inbox "~/Dropbox/notes/caldav-inbox.org")
+  ;; (setq org-caldav-files "~/Dropbox/notes")
+  ;; (setq org-icalendar-timezone "America/Los_Angeles"))
 
-;; Bibtex setup
-(setq bibtex-completion-bibliography "~/Dropbox/literature/library.bib")
-(setq bibtex-completion-library-path "~/Dropbox/literature")
-(setq bibtex-completion-notes-path "~/Dropbox/org/notes/literature")
+  ;; Activate pdf-tools
+  ;; (pdf-tools-install)
 
-;; Setup org-ref
-(setq reftex-default-bibliography '("~/Dropbox/literature/library.bib"))
-(setq org-ref-default-bibliography '("~/Dropbox/literature/library.bib")
-      org-ref-pdf-directory "~/Dropbox/literature/")
+  ;; Bibtex setup
+  (setq bibtex-completion-bibliography "~/Dropbox/literature/library.bib")
+  (setq bibtex-completion-library-path "~/Dropbox/literature")
+  (setq bibtex-completion-notes-path "~/Dropbox/org/notes/literature")
 
-;; Tell org-ref to let helm-bibtex find notes for it
-(setq org-ref-notes-function
-      (lambda (thekey)
-        (let ((bibtex-completion-bibliography (org-ref-find-bibliography)))
-          (bibtex-completion-edit-notes
-           (list (car (org-ref-get-bibtex-key-and-file thekey)))))))
+  ;; Setup org-ref
+  (setq reftex-default-bibliography '("~/Dropbox/literature/library.bib"))
+  (setq org-ref-default-bibliography '("~/Dropbox/literature/library.bib")
+        org-ref-pdf-directory "~/Dropbox/literature/")
 
-;; R/ESS options
-(setq inferior-R-args "--no-save --no-restore-data")
-(setq ess-R-argument-suffix " = ")
-(ess-toggle-underscore nil)
-(setq ess-default-style 'RStudio)
-(add-hook 'ess-julia-mode-hook 'julia-mode)
+  ;; Tell org-ref to let helm-bibtex find notes for it
+  (setq org-ref-notes-function
+        (lambda (thekey)
+          (let ((bibtex-completion-bibliography (org-ref-find-bibliography)))
+            (bibtex-completion-edit-notes
+             (list (car (org-ref-get-bibtex-key-and-file thekey)))))))
 
-;; Julia options
-(setq julia-repl-executable-records
-      '((default "julia")
-        (julia-0.7 "julia-0.7")
-        (julia-1.2 "julia-1.2")
-        (julia-1.3 "julia-1.3")))
-;; Set number of threads as environmental variable for Julia v1.3+
-(setenv "JULIA_NUM_THREADS" "4")
-;; Without this tries to open vim inside the julia-repl terminal process,
-;; which gets messy quickly.
-(setenv "JULIA_EDITOR" "emacsclient")
-;; Can be used to set e.g. number of processes with " -p 4". Can also be
-;; called as a function to set switches on the fly.
-(setq julia-repl-switches "")
-
-;; Default Spacemacs large file size too small (1Mb)
-(setq dotspacemacs-large-file-size 100)
-
-;; Weather setup
-(setq sunshine-location "Seattle,WA,US")
-(setq sunshine-show-icons t)
-
-(setq spotify-transport 'connect)
-
-;; Use minibuffer for GPG password propmts
-;; (setq epa-pinentry-mode 'loopback)
-;; (pinentry-start)
-
-(with-eval-after-load 'flycheck
-  (flycheck-define-checker todo-checker
-    "A checker to list open TODOs, CITEs, or other annotations in
   ;; Make IRC quiet again
   (setq erc-hide-list '("JOIN" "PART" "QUIT"))
 
-  a file."
-    :command ("todo-checker" source)
-    :error-patterns
-    ((warning line-start (file-name) ":" line ":" column ":" (message) line-end))
-    :modes markdown-mode))
+  ;; R/ESS options
+  (setq inferior-R-args "--no-save --no-restore-data")
+  (setq ess-R-argument-suffix " = ")
+  (ess-toggle-underscore nil)
+  (setq ess-default-style 'RStudio)
+  (add-hook 'ess-julia-mode-hook 'julia-mode)
 
-;; Add monitors to symon
-(setq symon-monitors '(symon-linux-cpu-monitor
-                       symon-linux-memory-monitor
-                       symon-linux-network-rx-monitor
-                       symon-linux-network-tx-monitor
-                       symon-linux-battery-monitor)))
+  ;; Julia options
+  (setq julia-repl-executable-records
+        '((default "julia")
+          (julia-0.7 "julia-0.7")
+          (julia-1.2 "julia-1.2")
+          (julia-1.3 "julia-1.3")))
+  ;; Set numbec of threads as environmental variable for Julia v1.3+
+  (setenv "JULIA_NUM_THREADS" "4")
+  ;; Without this tries to open vim inside the julia-repl terminal process,
+  ;; which gets messy quickly.
+  (setenv "JULIA_EDITOR" "emacsclient")
+  ;; Can be used to set e.g. number of processes with " -p 4". Can also be
+  ;; called as a function to set switches on the fly.
+  (setq julia-repl-switches "")
+
+  ;; Default Spacemacs large file size too small (1Mb)
+  (setq dotspacemacs-large-file-size 100)
+
+  ;; Weather setup
+  (setq sunshine-location "Seattle,WA,US")
+  (setq sunshine-show-icons t)
+
+  (setq spotify-transport 'connect
+        spotify-player-status-playing-text "▶"
+        spotify-player-status-paused-text "▮▮"
+        spotify-player-status-stopped-text "■"
+        spotify-player-status-not-shuffling-text ""
+        spotify-player-status-shuffling-text "⤮"
+        spotify-player-status-not-repeating-text ""
+        spotify-player-status-repeating-text "🔁"
+        spotify-player-status-format "%p %a/%t %s%r"
+        spotify-player-status-truncate-length 15)
+
+  ;; Use minibuffer for GPG password propmts
+  ;; (setq epa-pinentry-mode 'loopback)
+  ;; (pinentry-start)
+
+  (with-eval-after-load 'flycheck
+    (flycheck-define-checker todo-checker
+      "A checker to list open TODOs, CITEs, or other annotations in
+  a file."
+      :command ("todo-checker" source)
+      :error-patterns
+      ((warning line-start (file-name) ":" line ":" column ":" (message) line-end))
+      :modes markdown-mode))
+
+  ;; Add monitors to symon
+  (setq symon-monitors '(symon-linux-cpu-monitor
+                         symon-linux-memory-monitor
+                         symon-linux-network-rx-monitor
+                         symon-linux-network-tx-monitor
+                         symon-linux-battery-monitor))
+
+  (spacemacs|define-custom-layout  "@Spotify"
+    :binding "m"))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
