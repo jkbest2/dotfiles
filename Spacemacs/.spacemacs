@@ -87,6 +87,7 @@ This function should only modify configuration layer settings."
           org-enable-hugo-support t
           ;; Start agenda on current day
           org-agenda-start-on-weekday nil)
+     pdf
      rust
      scheme
      (shell :variables
@@ -670,9 +671,6 @@ set before packages are loaded."
 ;; (setq org-caldav-inbox "~/Dropbox/notes/caldav-inbox.org")
 ;; (setq org-caldav-files "~/Dropbox/notes")
 ;; (setq org-icalendar-timezone "America/Los_Angeles"))
-
-;; Activate pdf-tools
-(pdf-tools-install)
 
 ;; Bibtex setup
 (setq bibtex-completion-bibliography "~/Dropbox/literature/library.bib")
