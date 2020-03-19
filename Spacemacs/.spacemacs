@@ -45,7 +45,16 @@ This function should only modify configuration layer settings."
        deft-use-filename-as-title nil)
      docker
      emacs-lisp
-     erc
+     emoji
+     (erc :variables
+          erc-server-list
+          '(("irc.freenode.net"
+             :port "6697"
+             :ssl t
+             :nick "isposdef"))
+          erc-autojoin-channels-alist
+          '(("irc.freenode.net" "##statistics" "#R" "#julia"
+             "#kubuntu" "#emacs" "#lisp" "#guix" "##nonguix")))
      ess
      (geolocation :variables
                   geolocation-enable-weather-forecast t)
@@ -662,9 +671,6 @@ set before packages are loaded."
           (bibtex-completion-edit-notes
            (list (car (org-ref-get-bibtex-key-and-file thekey)))))))
 
-;; Make IRC quiet again
-(setq erc-hide-list '("JOIN" "PART" "QUIT"))
-
 ;; R/ESS options
 (setq inferior-R-args "--no-save --no-restore-data")
 (setq ess-R-argument-suffix " = ")
@@ -703,6 +709,9 @@ set before packages are loaded."
 (with-eval-after-load 'flycheck
   (flycheck-define-checker todo-checker
     "A checker to list open TODOs, CITEs, or other annotations in
+  ;; Make IRC quiet again
+  (setq erc-hide-list '("JOIN" "PART" "QUIT"))
+
   a file."
     :command ("todo-checker" source)
     :error-patterns
