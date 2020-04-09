@@ -1,0 +1,12 @@
+(("spacemacs" . ((user-emacs-directory . "~/spacemacs")
+                 (server-name . "spacemacs")))
+ ("work" . ((user-emacs-directory . "~/spacemacs")
+            (server-name . "work")))
+ ("org" . ((user-emacs-directory . "~/spacemacs")
+           (server-name . "org")))
+ ("chat" . ((user-emacs-directory . "~/spacemacs")
+            (server-name . "chat")))
+ ("doom-emacs" . ((user-emacs-directory . "~/doom-emacs")
+		  (server-name . "doom-emacs")
+		  (env . (("DOOMDIR" . "~/.doom.d"))))))
+
