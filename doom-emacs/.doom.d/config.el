@@ -154,7 +154,7 @@
         :nv "A" 'org-archive-to-archive-sibling))
 
 ;;; +journal
-(setq org-journal-date-format "%Y-%m-%d %A (W%W)"
+(setq org-journal-date-format "%Y-%m-%d %A (W%V)"
       ;; This setting doesn't work for some reason, so moved journal to default
       ;; `org/journal' location
       ;; org-journal-dir "~/Dropbox/journal/"
