@@ -58,3 +58,6 @@
 
 ;; Use pretty lines in place of line feed ^L characters
 (package! page-break-lines)
+
+;; Language server for Julia
+(package! lsp-julia :recipe (:host github :repo "non-jedi/lsp-julia"))
