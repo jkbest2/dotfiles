@@ -125,3 +125,11 @@ bindkey -v
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# Check and see if fasd is available before init
+if [ -x "$(command -v fasd)" ]; then
+  eval "$(fasd --init auto)"
+fi
+
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
