@@ -1,0 +1,3 @@
+rofi.theme: /usr/share/rofi/themes/gruvbox-dark-soft.rasi
+rofi.opacity: 70
+rofi.terminal: /home/jkbest/bin/kitty
