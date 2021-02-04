@@ -61,3 +61,10 @@
 
 ;; Language server for Julia
 (package! lsp-julia :recipe (:host github :repo "non-jedi/lsp-julia"))
+
+;; Stan support
+(package! stan-mode)
+(package! company-stan)
+(package! eldoc-stan)
+(package! flycheck-stan)
+(package! stan-snippets)
