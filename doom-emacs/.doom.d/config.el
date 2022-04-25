@@ -22,7 +22,7 @@
 ;; (setq doom-font (font-spec :family "juliamono" :size 12)
 ;;       doom-variable-pitch-font (font-spec :family "Inter" :size 14))
 ;; (setq doom-font (font-spec :family "monospace" :size 12))
-(setq doom-font (font-spec :family "FantasqueSansMono Nerd Font Mono" :size 16))
+(setq doom-font (font-spec :family "FantasqueSansMono Nerd Font" :size 16))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -98,35 +98,35 @@
 (set-fill-column 80)
 
 ;;; IRC settings
-(set-irc-server! "irc.freenode.net"
-                 `(:use-tls t
-                            :port 6697
-                            :server-buffer-name "freenode"
-                            :user ,(+pass-get-user "chat/freenode")
-                            :nick ,(+pass-get-user "chat/freenode")
-                            :sasl-username ,(+pass-get-user "chat/freenode")
-                            :sasl-password (lambda (&rest _) (+pass-get-secret "chat/freenode"))
-                            ;; :sasl-password ,(+pass-get-secret "chat/freenode")
-                            :channels (:after-auth
-                                       "##bayes"
-                                       "#emacs"
-                                       ;; "#guile"
-                                       ;; "#guix"
-                                       "#julia"
-                                       "#org-mode"
-                                       "#R"
-                                       "##statistics")))
+;; (set-irc-server! "irc.freenode.net"
+;;                  `(:use-tls t
+;;                             :port 6697
+;;                             :server-buffer-name "freenode"
+;;                             :user ,(+pass-get-user "chat/freenode")
+;;                             :nick ,(+pass-get-user "chat/freenode")
+;;                             :sasl-username ,(+pass-get-user "chat/freenode")
+;;                             :sasl-password (lambda (&rest _) (+pass-get-secret "chat/freenode"))
+;;                             ;; :sasl-password ,(+pass-get-secret "chat/freenode")
+;;                             :channels (:after-auth
+;;                                        "##bayes"
+;;                                        "#emacs"
+;;                                        ;; "#guile"
+;;                                        ;; "#guix"
+;;                                        "#julia"
+;;                                        "#org-mode"
+;;                                        "#R"
+;;                                        "##statistics")))
 ;;; From https://github.com/jorgenschaefer/circe/wiki/Configuration
 ;; Use channel name in prompt
-(add-hook 'circe-chat-mode-hook 'my-circe-prompt)
-(defun my-circe-prompt ()
-  (lui-set-prompt
-   (concat (propertize (concat "[" (buffer-name) "]")
-                       'face 'circe-prompt-face)
-           " ")))
+;; (add-hook 'circe-chat-mode-hook 'my-circe-prompt)
+;; (defun my-circe-prompt ()
+;;   (lui-set-prompt
+;;    (concat (propertize (concat "[" (buffer-name) "]")
+;;                        'face 'circe-prompt-face)
+;;            " ")))
 ;; Align nicks and messages
-(setq circe-format-say "{nick:15s} | {body}"
-      circe-format-self-say "{nick:15s} > {body}")
+;; (setq circe-format-say "{nick:15s} | {body}"
+;;       circe-format-self-say "{nick:15s} > {body}")
 
 ;;; Org-mode
 (after! org
@@ -212,7 +212,17 @@
 (mouse-avoidance-mode 'animate)
 
 ;; Set default Julia environment
-(setq lsp-julia-default-environment "~/.julia/environments/v1.5")
+;; (setq lsp-julia-default-environment "~/.julia/environments/v1.6")
+(setq julia-repl-executable-records
+      '((default   "julia")                  ; in the executable path
+        (julia-1.5 "julia-1.5")
+        (julia-1.6 "julia-1.6")))
+(after! vterm
+  (after! julia-repl
+    (julia-repl-set-terminal-backend 'vterm)))
+(setq vterm-kill-buffer-on-exit nil)
+(after! eglot-jl
+  (setq eglot-jl-language-server-project eglot-jl-base))
 
 ;;; stan-mode.el
 (use-package stan-mode
@@ -235,9 +245,9 @@
 (use-package eldoc-stan
   :hook (stan-mode . eldoc-stan-setup)
   ;;
-  :config
+  :config)
   ;; No configuration options as of now.
-  )
+  
 
 ;;; flycheck-stan.el
 (use-package flycheck-stan
@@ -257,15 +267,39 @@
   :hook (stan-mode . stan-snippets-initialize)
   ;;
   :config)
-  ;; No configuration options as of now.
+;; No configuration options as of now.
 
 
 ;;; ac-stan.el (Not on MELPA; Need manual installation)
-(use-package ac-stan
-  :load-path "path-to-your-directory/ac-stan/"
-  ;; Delete the line below if using.
-  :disabled t
-  :hook (stan-mode . stan-ac-mode-setup)
-  ;;
-  :config)
-  ;; No configuration options as of now.
+;; (use-package ac-stan
+;;   :load-path "path-to-your-directory/ac-stan/"
+;;   ;; Delete the line below if using.
+;;   :disabled t
+;;   :hook (stan-mode . stan-ac-mode-setup)
+;;   ;;
+;;   :config)
+;;   ;; No configuration options as of now.
+
+;; Set directories that contain projects
+(after! magit
+  (setq magit-repository-directories
+        '(;; Directory containing project root directories
+          ;; Projects I am developing
+          ("~/dev/"        . 2)
+          ;; Alternate dev directory; different partition
+          ("~/dev2/"       . 2)
+          ;; Sources of other projects
+          ("~/src/"        . 2)
+          ;; Julia package development
+          ("~/.julia/dev/" . 2))))
+
+;; Then load known magit projects into projectile
+(after! projectile
+  (when (require 'magit nil t)
+    (mapc #'projectile-add-known-project
+          (mapcar #'file-name-as-directory (magit-list-repos)))
+    ;; Optionally write to persistent `projectile-known-projects-file'
+    (projectile-save-known-projects)))
+
+;; Load quarto-mode
+(use-package quarto-mode)

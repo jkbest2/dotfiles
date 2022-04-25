@@ -68,3 +68,6 @@
 (package! eldoc-stan)
 (package! flycheck-stan)
 (package! stan-snippets)
+
+;; quarto support
+(package! quarto-mode)
