@@ -116,7 +116,7 @@ alias R='R --no-save --no-restore-data'
 alias docker-run-gui='XSOCK=/tmp/.X11-unix && XAUTH=/tmp/.docker.xauth && xauth nlist :0 | sed -e "s/^..../ffff/" | xauth -f $XAUTH nmerge - && docker run  -v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -e XAUTHORITY=$XAUTH  -e DISPLAY=$DISPLAY'
 
 # Change PATH
-path=('/home/jkbest/bin' $path)
+path=('/home/jkbest/bin' '/home/jkbest/.local/bin' $path)
 export path
 
 # Use vim keys by default
