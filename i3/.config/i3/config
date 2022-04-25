@@ -47,6 +47,7 @@ bindsym $mod+d exec dmenu_run
 bindsym $mod+z exec rofi -combi-modi window#drun -show combi -modi combi
 bindsym $mod+Shift+z exec rofi -show run
 bindsym $mod+Shift+s exec rofi -show ssh
+bindsym $mod+Shift+v exec pavucontrol-qt
 
 # change focus
 bindsym $mod+h focus left
