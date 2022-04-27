@@ -31,7 +31,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/Dropbox/org/")
+(setq org-directory "~/org/")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -75,8 +75,8 @@
   :init
   (setq org-ref-completion-library 'org-ref-ivy-cite)
   :config
-  (setq org-ref-default-bibliography '("~/Dropbox/literature/library.bib")
-        org-ref-pdf-directory '("~/Dropbox/literature")
+  (setq org-ref-default-bibliography '("~/literature/library.bib")
+        org-ref-pdf-directory '("~/literature")
         ;; Tell org-ref to let helm-bibtex find notes for it
         org-ref-notes-function
         (lambda (thekey)
@@ -85,10 +85,10 @@
              (list (car (org-ref-get-bibtex-key-and-file thekey))))))))
 
 ;; Bibtex setup
-(setq bibtex-completion-bibliography "~/Dropbox/literature/library.bib"
-      bibtex-completion-library-path "~/Dropbox/literature"
-      bibtex-completion-notes-path "~/Dropbox/org/notes/literature"
-      reftex-default-bibliography '("~/Dropbox/literature/library.bib"))
+(setq bibtex-completion-bibliography "~/literature/library.bib"
+      bibtex-completion-library-path "~/literature"
+      bibtex-completion-notes-path "~/org/notes/literature"
+      reftex-default-bibliography '("~/literature/library.bib"))
 
 ;;; Key bindings
 ;; Save all unsaved open buffers (SPC-fS in Spacemacs)
@@ -130,7 +130,7 @@
 
 ;;; Org-mode
 (after! org
-  (setq org-directory "~/Dropbox/org"
+  (setq org-directory "~/org"
         org-agenda-start-day nil
         org-agenda-start-on-weekday nil
         org-agenda-use-time-grid nil
@@ -165,7 +165,7 @@
 
 ;;; deft
 (after! deft
-  (setq deft-directory "~/Dropbox/org/notes"
+  (setq deft-directory "~/org/notes"
         deft-recursive t
         deft-extension '("org", "md", "Rmd")
         deft-new-file-format "%Y%m%d%H%M%S"
@@ -173,7 +173,7 @@
 
 ;;; +roam
 (after! org-roam
-  (setq org-roam-directory "~/Dropbox/org/notes"))
+  (setq org-roam-directory "~/org/notes"))
 
 
 ;;; Email (notmuch and message-mode)
@@ -286,8 +286,6 @@
         '(;; Directory containing project root directories
           ;; Projects I am developing
           ("~/dev/"        . 2)
-          ;; Alternate dev directory; different partition
-          ("~/dev2/"       . 2)
           ;; Sources of other projects
           ("~/src/"        . 2)
           ;; Julia package development

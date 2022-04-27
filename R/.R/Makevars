@@ -1,12 +1,12 @@
-CC=ccache clang -Qunused-arguments
-CXX=ccache clang++ -Qunused-arguments
-CCACHE_CPP2=yes
+# CC=ccache clang -Qunused-arguments
+# CXX=ccache clang++ -Qunused-arguments
+# CCACHE_CPP2=yes
 PKG_CPPFLAGS = -Wno-unknown-pragmas -Wno-ignored-attributes -O3 -march=native
 
 ## Pretty sure these are the Makevars options recommended when installing Stan
-# CXXFLAGS=-O3 -mtune=native -march=native -Wno-unused-variable -Wno-unused-function  -Wno-macro-redefined
-# CXXFLAGS+=-flto -Wno-unused-local-typedefs
-# CXXFLAGS += -Wno-ignored-attributes -Wno-deprecated-declarations
+CXXFLAGS=-O3 -mtune=native -march=native -Wno-unused-variable -Wno-unused-function  -Wno-macro-redefined
+CXXFLAGS+=-flto -Wno-unused-local-typedefs
+CXXFLAGS += -Wno-ignored-attributes -Wno-deprecated-declarations
 
 # CXX14FLAGS=-O3 -march=native -mtune=native
 # CXX14FLAGS += -fPIC
