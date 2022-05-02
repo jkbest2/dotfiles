@@ -1,6 +1,7 @@
 [user]
 	email = jkbest@gmail.com
 	name = John Best
-
 [credential]
 	helper = cache
+[init]
+	defaultBranch = main
