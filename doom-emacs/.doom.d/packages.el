@@ -71,3 +71,6 @@
 
 ;; quarto support
 (package! quarto-mode)
+
+;; elpher for gopher and gemini reading
+(package! elpher)
