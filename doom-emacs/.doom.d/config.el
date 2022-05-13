@@ -98,6 +98,10 @@
 (set-fill-column 80)
 
 ;;; IRC settings
+(set-irc-server! "irc.tilde.chat"
+  `(:use-tls t
+            :port 6697
+            :server-buffer-name "tilde.chat"))
 ;; (set-irc-server! "irc.freenode.net"
 ;;                  `(:use-tls t
 ;;                             :port 6697
@@ -174,28 +178,6 @@
 ;;; +roam
 (after! org-roam
   (setq org-roam-directory "~/org/notes"))
-
-
-;;; Email (notmuch and message-mode)
-(after! notmuch
-  (setq notmuch-saved-searches
-        '((:name "inbox" :query "tag:inbox" :key "i" :sort-order newest-first :search-type tree)
-          (:name "unread" :query "tag:unread" :key "u" :sort-order newest-first :search-type nil)
-          (:name "flagged" :query "tag:flagged" :key "f" :sort-order newest-first :search-type tree)
-          (:name "sent" :query "tag:sent" :key "t" :sort-order newest-first :search-type nil)
-          (:name "drafts" :query "tag:draft" :key "d" :sort-order newest-first)
-          (:name "all mail" :query "*" :key "a" :sort-order newest-first))
-        +notmuch-mail-folder "~/mail/jkbest.uw"
-        +notmuch-sync-backend 'gmi
-        +notmuch-sync-command "gmi sync"))
-;; Use sendmail (msmtp here) to send mail
-(setq mail-host-address "uw.edu"
-      message-auto-save-directory "~/mail/drafts"
-      message-default-mail-headers "Cc: \nBcc: John Best <jkbest@uw.edu> \n"
-      message-kill-buffer-on-exit t
-      message-send-mail-function 'message-send-mail-with-sendmail
-      message-signature t
-      message-signature-file "~/.signature")
 
 ;;; ESS
 (after! ess
@@ -301,3 +283,13 @@
 
 ;; Load quarto-mode
 (use-package quarto-mode)
+
+;; Load ox-gemini
+(use-package ox-gemini)
+
+;; mastodon
+;; (use-package mastodon
+;;   :ensure t
+;;   :config
+;;   (mastodon-discover)
+;;   (setq))

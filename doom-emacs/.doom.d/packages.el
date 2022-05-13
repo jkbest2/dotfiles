@@ -74,3 +74,5 @@
 
 ;; elpher for gopher and gemini reading
 (package! elpher)
+;; Export org-mode files to text/gemini
+(package! ox-gemini)
