@@ -55,41 +55,6 @@
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
 
-;; Define org-ref package
-;; (use-package! org-ref
-;;   :after org
-;;   :init
-;;   (setq org-ref-completion-library 'org-ref-ivy-cite)
-;;   :config
-  ;; (setq org-ref-default-bibliography '("~/Dropbox/literature/library.bib")
-  ;;       org-ref-pdf-directory '("~/Dropbox/literature")
-  ;;       ;; Tell org-ref to let helm-bibtex find notes for it
-  ;;       org-ref-notes-function
-  ;;       (lambda (thekey)
-  ;;         (let ((bibtex-completion-bibliography (org-ref-find-bibliography)))
-  ;;           (bibtex-completion-edit-notes
-  ;;            (List (car (org-ref-get-bibtex-key-and-file thekey))))))))
-
-(use-package! org-ref
-  :after org
-  :init
-  (setq org-ref-completion-library 'org-ref-ivy-cite)
-  :config
-  (setq org-ref-default-bibliography '("~/literature/library.bib")
-        org-ref-pdf-directory '("~/literature")
-        ;; Tell org-ref to let helm-bibtex find notes for it
-        org-ref-notes-function
-        (lambda (thekey)
-          (let ((bibtex-completion-bibliography (org-ref-find-bibliography)))
-            (bibtex-completion-edit-notes
-             (list (car (org-ref-get-bibtex-key-and-file thekey))))))))
-
-;; Bibtex setup
-(setq bibtex-completion-bibliography "~/literature/library.bib"
-      bibtex-completion-library-path "~/literature"
-      bibtex-completion-notes-path "~/org/notes/literature"
-      reftex-default-bibliography '("~/literature/library.bib"))
-
 ;;; Key bindings
 ;; Save all unsaved open buffers (SPC-fS in Spacemacs)
 (map! :leader :n "fA" 'evil-write-all)
@@ -97,40 +62,11 @@
 ;;; General options
 (set-fill-column 80)
 
-;;; IRC settings
-(set-irc-server! "irc.tilde.chat"
-  `(:use-tls t
-            :port 6697
-            :server-buffer-name "tilde.chat"))
-;; (set-irc-server! "irc.freenode.net"
-;;                  `(:use-tls t
-;;                             :port 6697
-;;                             :server-buffer-name "freenode"
-;;                             :user ,(+pass-get-user "chat/freenode")
-;;                             :nick ,(+pass-get-user "chat/freenode")
-;;                             :sasl-username ,(+pass-get-user "chat/freenode")
-;;                             :sasl-password (lambda (&rest _) (+pass-get-secret "chat/freenode"))
-;;                             ;; :sasl-password ,(+pass-get-secret "chat/freenode")
-;;                             :channels (:after-auth
-;;                                        "##bayes"
-;;                                        "#emacs"
-;;                                        ;; "#guile"
-;;                                        ;; "#guix"
-;;                                        "#julia"
-;;                                        "#org-mode"
-;;                                        "#R"
-;;                                        "##statistics")))
-;;; From https://github.com/jorgenschaefer/circe/wiki/Configuration
-;; Use channel name in prompt
-;; (add-hook 'circe-chat-mode-hook 'my-circe-prompt)
-;; (defun my-circe-prompt ()
-;;   (lui-set-prompt
-;;    (concat (propertize (concat "[" (buffer-name) "]")
-;;                        'face 'circe-prompt-face)
-;;            " ")))
-;; Align nicks and messages
-;; (setq circe-format-say "{nick:15s} | {body}"
-;;       circe-format-self-say "{nick:15s} > {body}")
+;;; Citar
+(setq! citar-bibliography '("~/literature/library.bib"
+                            "~/literature/calibre.bib")
+       citar-library-paths '("~/literature/")
+       citar-notes-paths '("~/org/notes/literature"))
 
 ;;; Org-mode
 (after! org
@@ -146,7 +82,7 @@
         org-deadline-warning-days 7
         org-log-into-drawer t
         org-refile-targets '((nil :maxlevel . 3)
-                             (org-agenda-files :maxlevel 3))
+                             (org-agenda-files :maxlevel . 3))
         org-reverse-note-order t
         org-startup-indented t
         org-startup-folded t
@@ -171,7 +107,7 @@
 (after! deft
   (setq deft-directory "~/org/notes"
         deft-recursive t
-        deft-extension '("org", "md", "Rmd")
+        deft-extensions '("org" "md" "Rmd")
         deft-new-file-format "%Y%m%d%H%M%S"
         deft-use-filename-as-title nil))
 
@@ -286,10 +222,3 @@
 
 ;; Load ox-gemini
 (use-package ox-gemini)
-
-;; mastodon
-;; (use-package mastodon
-;;   :ensure t
-;;   :config
-;;   (mastodon-discover)
-;;   (setq))

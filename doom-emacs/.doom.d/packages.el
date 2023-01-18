@@ -53,9 +53,6 @@
 ;; Disable "jk" as escape
 (package! evil-escape :disable t)
 
-;; Enable org-ref
-(package! org-ref)
-
 ;; Use pretty lines in place of line feed ^L characters
 (package! page-break-lines)
 
